@@ -1,0 +1,10 @@
+streamlit
+langchain
+langgraph
+langchain-groq
+langchain-community
+tavily-python
+pydantic
+tenacity
+reportlab
+python-dotenv
