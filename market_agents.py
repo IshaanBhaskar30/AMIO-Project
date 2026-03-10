@@ -1,7 +1,5 @@
-# ============================================================
 # market_agents.py
 # Autonomous Market Intelligence Orchestrator (AMIO)
-# Production-Grade Version
 # ============================================================
 
 from typing import Annotated, TypedDict, List, Optional
@@ -15,7 +13,7 @@ import os
 import json
 
 
-# ============================================================
+
 # GRAPH STATE
 # ============================================================
 
@@ -27,13 +25,13 @@ class MarketState(TypedDict):
     financials: Optional[str]
     competitors: Optional[str]
     risks: Optional[str]
-    sources: Annotated[List[str], operator.add]  # auto-merge
+    sources: Annotated[List[str], operator.add]  
     final_report: Optional[dict]
     confidence: Optional[dict]
     refinement_count: int
 
 
-# ============================================================
+
 # RETRY WRAPPER
 # ============================================================
 
@@ -42,7 +40,7 @@ def safe_invoke(llm, messages):
     return llm.invoke(messages)
 
 
-# ============================================================
+
 # GRAPH BUILDER
 # ============================================================
 
@@ -61,7 +59,7 @@ def build_graph(groq_key: str, tavily_key: str, model_name: str):
         max_results=3
     )
 
-    # ========================================================
+    
     # PLANNER
     # ========================================================
 
@@ -100,7 +98,7 @@ def build_graph(groq_key: str, tavily_key: str, model_name: str):
 
         return {"plan": plan_dict}
 
-    # ========================================================
+    
     # ROUTER
     # ========================================================
 
@@ -121,7 +119,7 @@ def build_graph(groq_key: str, tavily_key: str, model_name: str):
 
         return tasks
 
-    # ========================================================
+    
     # SEARCH AGENT FACTORY
     # ========================================================
 
@@ -149,7 +147,7 @@ def build_graph(groq_key: str, tavily_key: str, model_name: str):
     competitor_agent = make_search_agent("competitors", "main competitors market share")
     risk_agent = make_search_agent("risks", "regulatory geopolitical operational risks")
 
-    # ========================================================
+    
     # AGGREGATOR
     # ========================================================
 
@@ -185,7 +183,7 @@ def build_graph(groq_key: str, tavily_key: str, model_name: str):
 
         return {"final_report": report}
 
-    # ========================================================
+   
     # EVALUATOR
     # ========================================================
 
@@ -220,7 +218,7 @@ def build_graph(groq_key: str, tavily_key: str, model_name: str):
 
         return {"confidence": confidence}
 
-    # ========================================================
+    
     # REFINEMENT
     # ========================================================
 
@@ -252,7 +250,7 @@ def build_graph(groq_key: str, tavily_key: str, model_name: str):
             "refinement_count": state["refinement_count"] + 1
         }
 
-    # ========================================================
+    
     # GRAPH CONSTRUCTION
     # ========================================================
 
@@ -283,3 +281,4 @@ def build_graph(groq_key: str, tavily_key: str, model_name: str):
     graph.add_edge("refine", "aggregator")
 
     return graph.compile()
+
