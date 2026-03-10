@@ -11,14 +11,14 @@ import io
 import os
 
 
-# ============================================================
+
 # PAGE CONFIG
 # ============================================================
 
 st.set_page_config(page_title="AMIO", layout="wide")
 st.title("🚀 Autonomous Market Intelligence Orchestrator")
 
-# ============================================================
+
 # SIDEBAR
 # ============================================================
 
@@ -42,14 +42,14 @@ model_choice = st.sidebar.selectbox(
      "meta-llama/llama-4-scout-17b-16e-instruct"]
 )
 
-# ============================================================
+
 # QUERY INPUT
 # ============================================================
 
 query = st.text_area("Enter Company or Industry Query")
 
 
-# ============================================================
+
 # MAIN EXECUTION
 # ============================================================
 
@@ -73,7 +73,7 @@ if st.button("Generate Report"):
         report = result["final_report"]
         confidence = result["confidence"]
 
-        # ========================================================
+        
         # DISPLAY REPORT
         # ========================================================
 
@@ -83,7 +83,7 @@ if st.button("Generate Report"):
         st.subheader("🧠 Confidence Assessment")
         st.json(confidence)
 
-        # ========================================================
+        
         # PDF EXPORT
         # ========================================================
 
@@ -124,3 +124,4 @@ if st.button("Generate Report"):
             file_name="market_intelligence_report.pdf",
             mime="application/pdf"
         )
+
